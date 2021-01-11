@@ -137,13 +137,34 @@ function getList () {
             
         })
         
-
-    })
-    
-
+    }) 
 }
 
+function searchBattle(king,location=null,type=null) {
+
+    let query = `SELECT name FROM battLes_data WHERE (attacker_king = '${king}' OR defender_king = '${king}')`;
+
+    location !== null ? query += ` AND location = '${location}'` : null;
+
+    type !== null ?  query += ` AND battle_type = '${type}'` : null;
+
+    console.log(query)
+
+    return new Promise((resolve, reject)=>{
+        conn.query(query, function (err, result) {
+            if (err) reject(err);
+            let data = result.map((item) => item.name);
+            resolve(data);
+            
+        })
+        
+    }) 
+}
+
+
 module.exports.list = getList;
+module.exports.searchBattle = searchBattle;
+
 module.exports.authUser = authUser;
 module.exports.createBattle = createBattle;
 module.exports.readBattle = readBattle;

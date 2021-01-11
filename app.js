@@ -14,7 +14,15 @@ app.use(cors())
 
 
 app.get('/list', (req, res) => {
-    sql.list().then(data =>res.json(data) );  
+
+    sql.list().then(data =>res.json(data) );   
+});
+
+app.get('/search', (req, res) => {
+    if(!req.query.king){
+        res.sendStatus(400);
+    }
+    sql.searchBattle(req.query.king,req.query.location,req.query.type).then(data =>{console.log(data) ;res.json(data)} );   
 });
 
 
