@@ -148,8 +148,6 @@ function searchBattle(king,location=null,type=null) {
 
     type !== null ?  query += ` AND battle_type = '${type}'` : null;
 
-    console.log(query)
-
     return new Promise((resolve, reject)=>{
         conn.query(query, function (err, result) {
             if (err) reject(err);

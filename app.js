@@ -129,7 +129,7 @@ app.put('/battleApi', (req, res) => {
         res.sendStatus(400);
     }
     else{
-        sql.deleteBattle(req.body.battleName,req.body.newBattleName).then(
+        sql.updateBattle(req.body.battleName,req.body.newBattleName).then(
             (result)=>{
                     res.json({result})
                 
